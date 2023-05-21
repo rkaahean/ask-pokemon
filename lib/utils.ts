@@ -23,7 +23,7 @@ export async function getPokemonQuery(query: string) {
   `;
   try {
     const config = new Configuration({
-      apiKey: "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",
+      apiKey: process.env.OPENAI_KEY,
     });
     const openai = new OpenAIApi(config);
     // ask chat gpt about query
