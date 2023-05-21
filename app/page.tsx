@@ -42,9 +42,9 @@ export default function Home() {
     loading || queryResults.length != 0 || query.length != 0;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-stone-900">
+    <main className="flex min-h-screen w-screen flex-col items-center justify-center p-2 sm:p-24 bg-stone-900">
       <motion.div
-        className="w-1/2 flex flex-row space-x-5"
+        className="w-full sm:w-1/2 flex flex-row space-x-5"
         animate={{
           y: isSearchBarMinimized ? -200 : 0,
           scale: isSearchBarMinimized ? 0.9 : 1,

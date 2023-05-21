@@ -38,31 +38,30 @@ export const PokemonCard = ({ data }: { data: Pokemon }) => {
     >
         <div className="relative w-44 h-44">
         <Image src={imageUrl} alt={data.name} fill priority />
-
         </div>
       <CardContent>
         <div className="flex w-full flex-col items-start justify-between">
-          <div className="text-xl font-medium text-stone-200">{data.name}</div>
+          <div className="text-xl font-medium text-stone-900">{data.name}</div>
           <Separator className="my-4" />
           <div>
-            <div className={classNames("text-base text-stone-300")}>
+            <div className={classNames("text-base text-stone-800")}>
               {types[0]}
             </div>
             <div
               className={classNames(
-                "text-xs italic tracking-wider text-muted-foreground"
+                "text-xs italic tracking-wider text-stone-500"
               )}
             >
               Type
             </div>
           </div>
           <div>
-            <div className={classNames("text-base text-stone-300")}>
+            <div className={classNames("text-base text-stone-800")}>
               {data.abilities[0].ability.name}
             </div>
             <div
               className={classNames(
-                "text-xs italic tracking-wider text-muted-foreground"
+                "text-xs italic tracking-wider text-stone-500"
               )}
             >
               Ability
@@ -71,14 +70,14 @@ export const PokemonCard = ({ data }: { data: Pokemon }) => {
         </div>
         <Separator className="my-4" />
         <div className="flex w-full flex-col items-start justify-between">
-          <div className={classNames("text-base text-stone-300")}>
+          <div className={classNames("text-base text-stone-800")}>
             {data.moves.slice(0, 2).map((move, index) => {
               return <div key={index}>{move.move.name}</div>;
             })}
           </div>
           <div
             className={classNames(
-              "text-xs italic tracking-wider text-muted-foreground"
+              "text-xs italic tracking-wider text-stone-500"
             )}
           >
             Moves
