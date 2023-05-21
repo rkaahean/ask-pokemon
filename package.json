@@ -19,6 +19,7 @@
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
     "debug": "^4.3.4",
+    "dotenv": "^16.0.3",
     "framer-motion": "^10.12.12",
     "lucide-react": "^0.220.0",
     "next": "13.4.3",

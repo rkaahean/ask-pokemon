@@ -1,12 +1,11 @@
 "use client";
 
 import classNames from "classnames";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Pokemon } from "pokenode-ts";
 import { Card, CardContent } from "./ui/card";
 import { Separator } from "./ui/separator";
-import { getCardColor } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 export const PokemonCard = ({ data }: { data: Pokemon }) => {
   // get image url
@@ -44,6 +43,7 @@ export const PokemonCard = ({ data }: { data: Pokemon }) => {
             "bg-violet-500": types[0] === "psychic",
             "bg-orange-800": types[0] === "dragon",
             "bg-teal-200": types[0] === "normal",
+            "bg-blue-300": types[0] === "ice",
           }
         )}
       >

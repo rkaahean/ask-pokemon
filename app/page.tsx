@@ -3,7 +3,7 @@
 import { PokemonCard } from "@/components/PokemonCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { getPokemonData, getPokemonQuery } from "@/lib/utils";
+import { getPokemonData } from "@/lib/utils";
 import classNames from "classnames";
 import { m, motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
@@ -19,10 +19,16 @@ export default function Home() {
     // set initial state
     setLoading(true);
     setQueryResults([]);
-    const results = (await getPokemonQuery(query)) as string[];
-    console.log(results);
+    const results = await fetch("/pokemon", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query: query }),
+    }).then((res) => res.json());
+    console.log("RESULTS",results);
     // make a promise for each pokemon. Then do promise.all
-    const promises = results.map((pokemon) => getPokemonData(pokemon));
+    const promises = results.map((pokemon:string) => getPokemonData(pokemon));
     // wait for all promises to resolve
     const apiData = await Promise.all(promises);
     // set results state
@@ -84,7 +90,7 @@ export default function Home() {
       </motion.div>
       <div className="flex flex-col sm:flex-row w-full sm:w-2/3 justify-center space-x-10">
         {queryResults.map((pokemon) => {
-          return <PokemonCard data={pokemon} />;
+          return <PokemonCard data={pokemon} key={pokemon.id}/>;
         })}
       </div>
     </main>
