@@ -12,7 +12,8 @@ export async function POST(request: Request) {
       }
     }"
     That is, return a list of ID's.
-    Where id is the pokemon id. Do not return any other information.
+    Where id is the pokemon id. DO NOT RETURN ANYTHING ELSE.
+    YOUR OUTPUT SHOULD BE JSON ONLY.
     ${query}
     `;
   try {
