@@ -8,7 +8,7 @@ import classNames from "classnames";
 import { m, motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 import { Pokemon } from "pokenode-ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -26,9 +26,9 @@ export default function Home() {
       },
       body: JSON.stringify({ query: query }),
     }).then((res) => res.json());
-    console.log("RESULTS",results);
+    console.log("RESULTS", results);
     // make a promise for each pokemon. Then do promise.all
-    const promises = results.map((pokemon:string) => getPokemonData(pokemon));
+    const promises = results.map((pokemon: string) => getPokemonData(pokemon));
     // wait for all promises to resolve
     const apiData = await Promise.all(promises);
     // set results state
@@ -46,6 +46,24 @@ export default function Home() {
   // TODO: ignore animation while the query is still being typed
   const isSearchBarMinimized =
     loading || queryResults.length != 0 || query.length != 0;
+
+  const handleKeyDown = (event: { key: string }) => {
+    if (event.key === "Enter") {
+      // Trigger the button click event
+      document.getElementById("queryInput")?.focus();
+      document.getElementById("querySubmit")?.click();
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener when the component mounts
+    document.addEventListener("keydown", handleKeyDown);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <main className="flex min-h-screen w-screen flex-col items-center p-2 sm:p-24 bg-stone-900 space-y-20">
@@ -69,6 +87,7 @@ export default function Home() {
         </Button>
         <Input
           type="text"
+          id="queryInput"
           placeholder="Ask questions about pokemon..."
           onChange={(e) => setQuery(e.target.value)}
           className={classNames(
@@ -83,6 +102,7 @@ export default function Home() {
           className="ml-2 bg-blue-700 hover:bg-blue-500 text-xs sm:text-base"
           onClick={handlePokemonQuery}
           disabled={query.length === 0}
+          id="querySubmit"
         >
           {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
           Search
@@ -90,7 +110,7 @@ export default function Home() {
       </motion.div>
       <div className="flex flex-col sm:flex-row w-full sm:w-2/3 justify-center space-x-10">
         {queryResults.map((pokemon) => {
-          return <PokemonCard data={pokemon} key={pokemon.id}/>;
+          return <PokemonCard data={pokemon} key={pokemon.id} />;
         })}
       </div>
     </main>
