@@ -36,6 +36,8 @@ export async function POST(request: Request) {
     console.log("Answer", answer);
     // given the answer, convert it into JSON
     const answerJSON = JSON.parse(answer);
+    console.log("Answer JSON", answerJSON);
+
     // get the id's from the answer. get only top 2 for now
     const pokemonId = answerJSON.data.id.slice(0, 3);
     return NextResponse.json(pokemonId);
