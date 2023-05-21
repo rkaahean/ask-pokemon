@@ -1,15 +1,17 @@
 "use client";
 
+import { PokemonCard } from "@/components/PokemonCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getPokemonData, getPokemonQuery } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Loader2, X } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import { Pokemon } from "pokenode-ts";
 import { useState } from "react";
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [queryResults, setQueryResults] = useState([]);
+  const [queryResults, setQueryResults] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(false);
 
   const handlePokemonQuery = async () => {
@@ -25,32 +27,39 @@ export default function Home() {
     // set results state
     setLoading(false);
     setQueryResults(apiData);
+    console.log(apiData);
   };
 
   const handleQueryCancel = () => {
     setQuery("");
     setQueryResults([]);
     setLoading(false);
-  }
+  };
   // when loading is true or when loading is false and query results is empty
   // TODO: ignore animation while the query is still being typed
-  const isSearchBarMinimized = loading || queryResults.length != 0 || query.length != 0;
+  const isSearchBarMinimized =
+    loading || queryResults.length != 0 || query.length != 0;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <motion.div
         className="w-1/2 flex flex-row space-x-5"
         animate={{
-          y: isSearchBarMinimized ? -300: 0,
-          scale: isSearchBarMinimized ? 0.9: 1,
+          y: isSearchBarMinimized ? -200 : 0,
+          scale: isSearchBarMinimized ? 0.9 : 1,
         }}
         transition={{
           type: "spring",
-          stiffness: 100,
-          mass: 0.8
+          stiffness: 120,
+          mass: 0.5,
         }}
       >
-        <Button className="mr-2 bg-red-700 hover:bg-red-500" onClick={handleQueryCancel}>Clear</Button>
+        <Button
+          className="mr-2 bg-red-700 hover:bg-red-500"
+          onClick={handleQueryCancel}
+        >
+          Clear
+        </Button>
         <Input
           type="text"
           placeholder="Ask questions about pokemon..."
@@ -66,7 +75,15 @@ export default function Home() {
           Search
         </Button>
       </motion.div>
-      <div>{queryResults}</div>
+      <div className="flex flex-row w-2/3 justify-center space-x-10">
+        {queryResults.map((pokemon) => {
+          return (
+            <PokemonCard
+              data={pokemon}
+            />
+          );
+        })}
+      </div>
     </main>
   );
 }
