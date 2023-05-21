@@ -4,7 +4,8 @@ import { PokemonCard } from "@/components/PokemonCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getPokemonData, getPokemonQuery } from "@/lib/utils";
-import { motion } from "framer-motion";
+import classNames from "classnames";
+import { m, motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 import { Pokemon } from "pokenode-ts";
 import { useState } from "react";
@@ -41,7 +42,7 @@ export default function Home() {
     loading || queryResults.length != 0 || query.length != 0;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-stone-900">
       <motion.div
         className="w-1/2 flex flex-row space-x-5"
         animate={{
@@ -64,10 +65,14 @@ export default function Home() {
           type="text"
           placeholder="Ask questions about pokemon..."
           onChange={(e) => setQuery(e.target.value)}
+          className={classNames(
+            "text-stone-300 border-0 ring-0",
+            "bg-stone-800",
+          )}
           value={query}
         />
         <Button
-          className="ml-2"
+          className="ml-2 bg-blue-700 hover:bg-blue-500"
           onClick={handlePokemonQuery}
           disabled={query.length === 0}
         >
@@ -77,11 +82,7 @@ export default function Home() {
       </motion.div>
       <div className="flex flex-row w-2/3 justify-center space-x-10">
         {queryResults.map((pokemon) => {
-          return (
-            <PokemonCard
-              data={pokemon}
-            />
-          );
+          return <PokemonCard data={pokemon} />;
         })}
       </div>
     </main>

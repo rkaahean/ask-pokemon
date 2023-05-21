@@ -30,6 +30,9 @@ export const PokemonCard = ({ data }: { data: Pokemon }) => {
             "bg-yellow-500": types[0] === "electric",
             "bg-purple-500": types[0] === "poison",
             "bg-pink-500": types[0] === "fairy",
+            "bg-stone-500": types[0] === "rock",
+            "bg-orange-500": types[0] === "ground",
+            "bg-teal-500": types[0] === "bug",
         },
       )}
     >
