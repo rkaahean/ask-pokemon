@@ -69,7 +69,7 @@ export default function Home() {
             "text-stone-300 border-0 ring-0",
             "bg-stone-800",
             "text-xs sm:text-base",
-            "focus-visible:ring-0"
+            "focus-visible:ring-1 focus-visible:ring-stone-600"
           )}
           value={query}
         />
