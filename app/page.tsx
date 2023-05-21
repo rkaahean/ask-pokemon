@@ -42,11 +42,11 @@ export default function Home() {
     loading || queryResults.length != 0 || query.length != 0;
 
   return (
-    <main className="flex min-h-screen w-screen flex-col items-center justify-center p-2 sm:p-24 bg-stone-900">
+    <main className="flex min-h-screen w-screen flex-col items-center p-2 sm:p-24 bg-stone-900 space-y-20">
       <motion.div
-        className="w-full sm:w-1/2 flex flex-row space-x-5"
+        className="w-full md:w-1/2 flex flex-row space-x-2 sm:space-x-5"
         animate={{
-          y: isSearchBarMinimized ? -200 : 0,
+          y: isSearchBarMinimized ? 0 : 300,
           scale: isSearchBarMinimized ? 0.9 : 1,
         }}
         transition={{
@@ -56,7 +56,7 @@ export default function Home() {
         }}
       >
         <Button
-          className="mr-2 bg-red-700 hover:bg-red-500"
+          className="bg-red-700 hover:bg-red-500 text-xs sm:text-base"
           onClick={handleQueryCancel}
         >
           Clear
@@ -68,11 +68,13 @@ export default function Home() {
           className={classNames(
             "text-stone-300 border-0 ring-0",
             "bg-stone-800",
+            "text-xs sm:text-base",
+            "focus-visible:ring-0"
           )}
           value={query}
         />
         <Button
-          className="ml-2 bg-blue-700 hover:bg-blue-500"
+          className="ml-2 bg-blue-700 hover:bg-blue-500 text-xs sm:text-base"
           onClick={handlePokemonQuery}
           disabled={query.length === 0}
         >
@@ -80,7 +82,7 @@ export default function Home() {
           Search
         </Button>
       </motion.div>
-      <div className="flex flex-row w-2/3 justify-center space-x-10">
+      <div className="flex flex-col sm:flex-row w-full sm:w-2/3 justify-center space-x-10">
         {queryResults.map((pokemon) => {
           return <PokemonCard data={pokemon} />;
         })}
