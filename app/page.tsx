@@ -66,7 +66,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen w-screen flex-col items-center p-2 sm:p-24 bg-stone-900 space-y-20">
+    <main className="flex min-h-screen w-screen flex-col items-center justify center p-2 sm:p-24 bg-stone-900 space-y-20">
       <motion.div
         className="w-full md:w-1/2 flex flex-row space-x-2 sm:space-x-5"
         animate={{
