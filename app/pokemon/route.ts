@@ -33,6 +33,7 @@ export async function POST(request: Request) {
     });
     // get the answer back
     const answer = completion.data.choices[0].message?.content as string;
+    console.log("Answer", answer);
     // given the answer, convert it into JSON
     const answerJSON = JSON.parse(answer);
     // get the id's from the answer. get only top 2 for now
