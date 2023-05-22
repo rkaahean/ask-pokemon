@@ -66,7 +66,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen w-screen flex-col items-center justify center p-2 sm:p-24 bg-stone-900 space-y-20">
+    <main className="flex min-h-screen w-screen flex-col items-center p-2 sm:p-24 bg-stone-900 space-y-20">
       <motion.div
         className="w-full md:w-1/2 flex flex-row space-x-2 sm:space-x-5"
         animate={{
@@ -108,6 +108,12 @@ export default function Home() {
           Search
         </Button>
       </motion.div>
+      {!isSearchBarMinimized && (
+        <div className="text-stone-500 text-muted-foreground italic">
+          <div>"Gen 3 starter pokemon"</div>
+          <div>"What is the heaviest pokemon?"</div>
+        </div>
+      )}
       <div className="flex flex-col sm:flex-row w-full sm:w-2/3 justify-center items-center space-y-10 space-x-0 sm:space-x-10 sm:space-y-0">
         {queryResults.map((pokemon) => {
           return <PokemonCard data={pokemon} key={pokemon.id} />;
