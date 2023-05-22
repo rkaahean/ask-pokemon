@@ -108,7 +108,7 @@ export default function Home() {
           Search
         </Button>
       </motion.div>
-      <div className="flex flex-col sm:flex-row w-full sm:w-2/3 justify-center space-x-10">
+      <div className="flex flex-col sm:flex-row w-full sm:w-2/3 justify-center items-center space-y-10 sm:space-x-10">
         {queryResults.map((pokemon) => {
           return <PokemonCard data={pokemon} key={pokemon.id} />;
         })}
