@@ -6,11 +6,11 @@ export async function POST(request: Request) {
   const queryTemplate = `
     Answer the question below in about pokemon.
     Return the answers in the following format:
-    "{
-      data:{
-        id: [1, 2, 3]
+    {
+      "data":{
+        "id": [1, 2, 3]
       }
-    }"
+    }
     That is, return a list of ID's.
     Where id is the pokemon id. DO NOT RETURN ANYTHING ELSE.
     YOUR OUTPUT SHOULD BE JSON ONLY.
