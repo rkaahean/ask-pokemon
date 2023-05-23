@@ -5,10 +5,10 @@ export async function POST(request: Request) {
   const { query } = await request.json();
   const queryTemplate = `
     Answer the question below in about pokemon.
-    Return the answers in the following format:re
+    Return the answers in the following format:
     "{
-      data":{
-        "id": [1, 2, 3]
+      data:{
+        id: [1, 2, 3]
       }
     }"
     That is, return a list of ID's.
